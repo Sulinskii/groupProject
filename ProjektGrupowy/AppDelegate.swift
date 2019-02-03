@@ -7,15 +7,28 @@
 //
 
 import UIKit
+import GoogleMaps
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var mainFlow: MainFlowController?
+    var rootNavigationController: UINavigationController = UINavigationController()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.main.bounds)
+        UINavigationBar.appearance().barTintColor = .black
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().barStyle = .blackOpaque
+        LocationService.shared.startUpdatingLocation()
+        mainFlow = MainFlowController(rootNavigationController: rootNavigationController)
+        GMSServices.provideAPIKey("AIzaSyDU1VzwfEd5_L0UPU61q_kAEuIWdc3vQAs")
+        mainFlow?.startFlow()
+        window?.rootViewController = rootNavigationController
+        window?.makeKeyAndVisible()
         return true
     }
 
