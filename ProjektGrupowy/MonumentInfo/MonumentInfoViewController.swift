@@ -10,6 +10,8 @@ import UIKit
 
 class MonumentInfoViewController: UIViewController {
 
+    private var monument: Monument!
+
     @IBOutlet weak var nameInfoLabel: UILabel!
     @IBOutlet weak var streetInfoLabel: UILabel!
     @IBOutlet weak var cityInfoLabel: UILabel!
@@ -23,10 +25,12 @@ class MonumentInfoViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(didTapCloseButton))
         title = "Projekt grupowy"
+        displayDetails()
         // Do any additional setup after loading the view.
     }
 
-    init(){
+    init(monument: Monument){
+        self.monument = monument
         super.init(nibName: "MonumentInfoViewController", bundle: Bundle.main)
     }
 
@@ -38,6 +42,13 @@ class MonumentInfoViewController: UIViewController {
         self.dismiss(animated: true)
     }
 
+    private func displayDetails(){
+        nameInfoLabel.text = monument.name
+        streetInfoLabel.text = " \(String(monument.address.street)) \(String(monument.address.houseNumber))"
+        cityInfoLabel.text = monument.address.city
+        countryInfoLabel.text = monument.address.country
+        addedInfoLabel.text = monument.creationDone
+    }
 
     /*
     // MARK: - Navigation

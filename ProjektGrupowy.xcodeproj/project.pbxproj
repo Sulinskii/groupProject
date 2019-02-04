@@ -41,15 +41,19 @@
 		8613363341D0DF56AF5B086C /* AppKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613331D2854E69ED4A0DBA4 /* AppKeychain.swift */; };
 		861336C052AE1C28C6684881 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86133B72903BC71EA029D4FE /* UIImageViewExtension.swift */; };
 		861336F4573C5DFF5E2BD170 /* AddMonumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613331218F6667925D1B49F /* AddMonumentViewModel.swift */; };
+		8613384D16A5850A09A60474 /* PostAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86133D83D2F15B7C2D38F900 /* PostAddress.swift */; };
 		86133871A95E1D51EF4DBEE9 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86133BF252A1F4B87B649F7A /* UserRepository.swift */; };
 		861338E6228DA4F5007BB2AE /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861331617AFA1029DA90F9BD /* UIButtonExtension.swift */; };
+		86133955029D63CCC6E274F7 /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861337B7EE1CA6AA5053FEEE /* LoginUser.swift */; };
 		861339C30237F723A9FD756B /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86133880927DE3BAE6074DDF /* Coordinate.swift */; };
 		86133A1BD733BEE7B22FF96A /* ImageIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861333DEFEF4EF5545D0B375 /* ImageIdentifier.swift */; };
 		86133A59593E3B4808B501DE /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86133D1A645AD18046E9FD0B /* ActivityIndicator.swift */; };
 		86133A8F361B4EA8E3B2EF80 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86133A504330BA5DF8FE21C0 /* API.swift */; };
 		86133AA7FD38DB20E88590EF /* NetworkRequestPerformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861332A65982FF7119A92C34 /* NetworkRequestPerformer.swift */; };
 		86133ABFB46EE65BCA84AA60 /* AfterLoginFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613382C8F53BD598B4505D4 /* AfterLoginFlowController.swift */; };
+		86133AE5927932A389ED6346 /* RegisterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861330E2ED2B49FA94FBFDA0 /* RegisterUser.swift */; };
 		86133BB194C4F829E90D0D0E /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613383D9D498A81BB08AD13 /* LocationService.swift */; };
+		86133C32E3139F7C48DE0DF0 /* AddMonument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613397F3F501F7D4D0B9DAD /* AddMonument.swift */; };
 		86133CD107F05FCF34E33AF5 /* Monument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861332E0EA196C3C63F95565 /* Monument.swift */; };
 		86133E3D3143B13BE01D983A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86133A87C107DBC62D2AA73B /* User.swift */; };
 		86133F05214E3084714C53BA /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861337C75DD304556ED8BAAA /* Address.swift */; };
@@ -110,6 +114,7 @@
 		713FF9E92DBAB17FD4AFADE5 /* Pods-ProjektGrupowy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjektGrupowy.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjektGrupowy/Pods-ProjektGrupowy.release.xcconfig"; sourceTree = "<group>"; };
 		72D32DF9A9E2D6AA9417B29F /* Pods-ProjektGrupowyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjektGrupowyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjektGrupowyTests/Pods-ProjektGrupowyTests.release.xcconfig"; sourceTree = "<group>"; };
 		738B25B91D93B5101D020CD1 /* Pods-ProjektGrupowyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjektGrupowyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjektGrupowyTests/Pods-ProjektGrupowyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		861330E2ED2B49FA94FBFDA0 /* RegisterUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterUser.swift; sourceTree = "<group>"; };
 		861331617AFA1029DA90F9BD /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		861331A089AD8DCCB4384B26 /* Author.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		8613325F8530A6126DB4EB7D /* NotLoggedMapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotLoggedMapViewModel.swift; sourceTree = "<group>"; };
@@ -120,10 +125,12 @@
 		86133377A2A7F20FE2A5A458 /* OnBoardingFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingFlowController.swift; sourceTree = "<group>"; };
 		861333DEFEF4EF5545D0B375 /* ImageIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageIdentifier.swift; sourceTree = "<group>"; };
 		861334BEDD364DF25E6217B0 /* RegisterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		861337B7EE1CA6AA5053FEEE /* LoginUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = "<group>"; };
 		861337C75DD304556ED8BAAA /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		8613382C8F53BD598B4505D4 /* AfterLoginFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AfterLoginFlowController.swift; sourceTree = "<group>"; };
 		8613383D9D498A81BB08AD13 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		86133880927DE3BAE6074DDF /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		8613397F3F501F7D4D0B9DAD /* AddMonument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMonument.swift; sourceTree = "<group>"; };
 		86133A14DA2EB773E3AE67DE /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		86133A504330BA5DF8FE21C0 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		86133A87C107DBC62D2AA73B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -132,6 +139,7 @@
 		86133C4BB9E5CA2BAA4DD29A /* PlaceMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceMarker.swift; sourceTree = "<group>"; };
 		86133D1A645AD18046E9FD0B /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		86133D5DA290F27CC0A983B7 /* MainFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlowController.swift; sourceTree = "<group>"; };
+		86133D83D2F15B7C2D38F900 /* PostAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAddress.swift; sourceTree = "<group>"; };
 		978C9DEFC8E476197B17D965 /* Pods_ProjektGrupowy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjektGrupowy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6E1AB90C281A76F090E70C8 /* Pods_ProjektGrupowyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjektGrupowyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7FBE368DC4C035D0D0A9E95 /* Pods-ProjektGrupowyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjektGrupowyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjektGrupowyUITests/Pods-ProjektGrupowyUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -366,6 +374,10 @@
 				861337C75DD304556ED8BAAA /* Address.swift */,
 				86133880927DE3BAE6074DDF /* Coordinate.swift */,
 				861331A089AD8DCCB4384B26 /* Author.swift */,
+				861330E2ED2B49FA94FBFDA0 /* RegisterUser.swift */,
+				861337B7EE1CA6AA5053FEEE /* LoginUser.swift */,
+				86133D83D2F15B7C2D38F900 /* PostAddress.swift */,
+				8613397F3F501F7D4D0B9DAD /* AddMonument.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -696,6 +708,10 @@
 				86133A59593E3B4808B501DE /* ActivityIndicator.swift in Sources */,
 				861338E6228DA4F5007BB2AE /* UIButtonExtension.swift in Sources */,
 				861336F4573C5DFF5E2BD170 /* AddMonumentViewModel.swift in Sources */,
+				86133AE5927932A389ED6346 /* RegisterUser.swift in Sources */,
+				86133955029D63CCC6E274F7 /* LoginUser.swift in Sources */,
+				8613384D16A5850A09A60474 /* PostAddress.swift in Sources */,
+				86133C32E3139F7C48DE0DF0 /* AddMonument.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

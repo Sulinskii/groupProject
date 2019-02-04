@@ -12,10 +12,10 @@ import RxSwift
 let networkPerformer = DefaultNetworkRequestPerformer()
 
 enum API {
-    case login(login: String, password: String)
-    case register(name: String, surname: String, login: String, password: String)
+    case login(user: LoginUser)
+    case register(user: RegisterUser)
     case getMonument(id: Int)
-    case addMonument
+    case addMonument(monument: AddMonument)
     case getAllMonuments
     case updateMonument
 
@@ -30,11 +30,11 @@ enum API {
 
 extension API: TargetType {
     var baseURL: URL {
-        return URL(string: "http://52.157.229.83:7050")!
+        return URL(string: "http://52.157.230.165:7050")!
     }
     
     var headers: [String : String]? {
-        var basicHeaders = ["":""]
+        var basicHeaders = ["Content-Type":"application/json"]
         return basicHeaders
     }
     
@@ -63,7 +63,16 @@ extension API: TargetType {
 
     var task: Task {
         switch self {
-        case .login, .getMonument, .addMonument, .updateMonument, .getAllMonuments: return .requestPlain
+        case .register(let user):
+            let data = Mapper<RegisterUser>().toJSON(user)
+            return .requestParameters(parameters: data, encoding: JSONEncoding.default)
+        case .login(let user):
+            let data = Mapper<LoginUser>().toJSON(user)
+            return .requestParameters(parameters: data, encoding: JSONEncoding.default)
+        case .addMonument(let monument):
+            let data = Mapper<AddMonument>().toJSON(user)
+            return .requestParameters(parameters: data, encoding: JSONEncoding.default)
+        case .getMonument, .updateMonument, .getAllMonuments: return .requestPlain
         default: return .requestPlain
         }
     }

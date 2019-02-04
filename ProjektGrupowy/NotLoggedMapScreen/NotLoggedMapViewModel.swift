@@ -27,8 +27,8 @@ class NotLoggedMapViewModel {
             switch event {
             case .success(let response):
                 self.monuments.value = response
-                print("ok")
-            case .error(let error):
+                print(self.monuments.value)
+            case .error(_):
                 print("error")
                 break
             }

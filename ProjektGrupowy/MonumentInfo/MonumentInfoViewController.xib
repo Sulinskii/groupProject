@@ -54,26 +54,26 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbi-c9-Ibu" userLabel="Name Info">
-                    <rect key="frame" x="170" y="120" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbi-c9-Ibu" userLabel="Name Info">
+                    <rect key="frame" x="170" y="120.5" width="185" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qB-kk-Clb" userLabel="Street Info">
-                    <rect key="frame" x="170" y="171" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qB-kk-Clb" userLabel="Street Info">
+                    <rect key="frame" x="170" y="171.5" width="185" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRr-kh-5cV" userLabel="City Info">
-                    <rect key="frame" x="170" y="222" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRr-kh-5cV" userLabel="City Info">
+                    <rect key="frame" x="170" y="222.5" width="185" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13T-pp-95T" userLabel="Country Info">
-                    <rect key="frame" x="170" y="273" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13T-pp-95T" userLabel="Country Info">
+                    <rect key="frame" x="170" y="273.5" width="185" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -92,15 +92,19 @@
                 <constraint firstItem="v64-7J-9GJ" firstAttribute="top" secondItem="IcG-ZK-iod" secondAttribute="bottom" constant="30" id="2Sq-QP-0BR"/>
                 <constraint firstItem="9qB-kk-Clb" firstAttribute="centerY" secondItem="iQB-QU-W2v" secondAttribute="centerY" id="66Z-lh-eOG"/>
                 <constraint firstItem="9qB-kk-Clb" firstAttribute="leading" secondItem="iQB-QU-W2v" secondAttribute="leading" constant="130" id="9Na-KJ-nFm"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BRr-kh-5cV" secondAttribute="trailing" constant="20" id="Fmj-W9-UNN"/>
                 <constraint firstItem="IcG-ZK-iod" firstAttribute="top" secondItem="m4m-pI-uAS" secondAttribute="bottom" constant="30" id="JF8-ve-r4q"/>
                 <constraint firstItem="MCa-MU-bE4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="Pd2-hT-Gc2"/>
                 <constraint firstItem="m4m-pI-uAS" firstAttribute="top" secondItem="iQB-QU-W2v" secondAttribute="bottom" constant="30" id="R5S-xT-rl6"/>
                 <constraint firstItem="13T-pp-95T" firstAttribute="leading" secondItem="IcG-ZK-iod" secondAttribute="leading" constant="130" id="Vw1-yB-ppi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="13T-pp-95T" secondAttribute="trailing" constant="20" id="X9C-Fk-v2r"/>
                 <constraint firstItem="hbi-c9-Ibu" firstAttribute="centerY" secondItem="MCa-MU-bE4" secondAttribute="centerY" id="XAI-Rh-l3n"/>
                 <constraint firstItem="hbi-c9-Ibu" firstAttribute="leading" secondItem="MCa-MU-bE4" secondAttribute="leading" constant="130" id="XPw-vS-sB8"/>
                 <constraint firstItem="iQB-QU-W2v" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="cYi-vf-NcW"/>
                 <constraint firstItem="BRr-kh-5cV" firstAttribute="leading" secondItem="m4m-pI-uAS" secondAttribute="leading" constant="130" id="eFh-0o-P3e"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9qB-kk-Clb" secondAttribute="trailing" constant="20" id="gP1-C1-vEh"/>
                 <constraint firstItem="13T-pp-95T" firstAttribute="centerY" secondItem="IcG-ZK-iod" secondAttribute="centerY" id="jZn-Uy-ZGW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hbi-c9-Ibu" secondAttribute="trailing" constant="20" id="l08-4d-O3s"/>
                 <constraint firstItem="IcG-ZK-iod" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="lGO-cI-SXR"/>
                 <constraint firstItem="m4m-pI-uAS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="qS7-nH-5tn"/>
                 <constraint firstItem="iQB-QU-W2v" firstAttribute="top" secondItem="MCa-MU-bE4" secondAttribute="bottom" constant="30" id="rtx-66-nzg"/>

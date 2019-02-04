@@ -41,8 +41,9 @@ class RegisterViewController: UIViewController {
     }
 
     @objc func didTapRegisterButton(){
-        registerButtonTapped()
-        viewModel.onUserLoggedIn()
+        let user = RegisterUser(login: self.loginTextField.text!, password: self.passwordTextField.text!,
+                name: self.nameTextField.text!, surname: self.surnameTextField.text!)
+        self.viewModel.registerUser(user: user)
     }
 
 

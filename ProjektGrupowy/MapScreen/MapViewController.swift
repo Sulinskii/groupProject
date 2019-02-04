@@ -54,9 +54,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         title = "Projekt grupowy"
         addButton.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
         manageButton.addTarget(self, action: #selector(didTapManageButton), for: .touchUpInside)
-        addMonumentViewModel = AddMonumentViewModel()
-        addMonumentViewController = AddMonumentViewController(viewModel: addMonumentViewModel)
-        nv = UINavigationController(rootViewController: addMonumentViewController)
         let monuments: [Monument] = []
         manageMonumentsViewController = ManageMonumentsViewController(monuments: monuments)
         manageNavigationController = UINavigationController(rootViewController: manageMonumentsViewController)
@@ -103,6 +100,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     public func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print(coordinate)
         if (addButtonIsTapped) {
+            addMonumentViewModel = AddMonumentViewModel(coordinates: coordinate)
+            addMonumentViewController = AddMonumentViewController(viewModel: addMonumentViewModel)
+            nv = UINavigationController(rootViewController: addMonumentViewController)
             self.present(nv, animated: true)
         }
     }

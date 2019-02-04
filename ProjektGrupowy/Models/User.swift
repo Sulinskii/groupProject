@@ -7,29 +7,20 @@ import Foundation
 import ObjectMapper
 
 struct User: Mappable {
-    var id: String?
-    var firstName: String?
-    var lastName: String?
-    var email: String?
-    var phone: String?
+    private(set) var login: String = ""
+    private(set) var name: String = ""
+    private(set) var surname: String = ""
+    private(set) var token: String = ""
 
-
-    init(id: String? = nil, firstName: String? = nil, lastName: String? = nil, email: String? = nil, phone: String? = nil) {
-        self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
-        self.email = email
-        self.phone = phone
-    }
+    init() { }
 
     init?(map: Map) {
     }
 
     mutating func mapping(map: Map) {
-        id <- map["id"]
-        firstName <- map["firstName"]
-        lastName <- map["lastName"]
-        email <- map["email"]
-        phone <- map["phone"]
+        login <- map["login"]
+        name <- map["name"]
+        surname <- map["surname"]
+        token <- map["token"]
     }
 }

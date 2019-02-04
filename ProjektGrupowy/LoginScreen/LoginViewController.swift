@@ -67,7 +67,7 @@ class LoginViewController: UIViewController {
         if (checkLogin()) {
             invalidLogin.isHidden = true
             if (checkPassword()) {
-                viewModel.onUserLoggedIn(User(firstName: loginTextField.text))
+//                viewModel.onUserLoggedIn(User(firstName: loginTextField.text))
             } else {
                 invalidPassword.isHidden = false
             }

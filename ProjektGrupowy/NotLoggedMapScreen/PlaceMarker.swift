@@ -10,9 +10,12 @@ import CoreLocation
 import UIKit
 
 class PlaceMarker: GMSMarker {
-    init(coordinates: Coordinate){
+    var monument: Monument!
+
+    init(monument: Monument){
         super.init()
-        let coordinates = CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude)
+        self.monument = monument
+        let coordinates = CLLocationCoordinate2D(latitude: monument.coordinates.latitude, longitude: monument.coordinates.longitude)
         self.position = coordinates
     }
 

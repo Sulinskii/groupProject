@@ -71,8 +71,9 @@ class NotLoggedMapViewController: UIViewController, GMSMapViewDelegate, CLLocati
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
         self.allMarkers = monuments.map {
-            let marker = PlaceMarker(coordinates: $0.coordinates)
+            let marker = PlaceMarker(monument: $0)
             marker.map = self.mapView
+            print(marker)
             return marker
         }
         mapView.delegate = self
@@ -89,16 +90,20 @@ class NotLoggedMapViewController: UIViewController, GMSMapViewDelegate, CLLocati
     }
 
     public func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D){
+
         print(coordinate)
     }
 
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        presentMonumentInfoScreen()
+        guard let marker = marker as? PlaceMarker else {
+            return true
+        }
+        presentMonumentInfoScreen(monument: marker.monument)
         return true
     }
 
-    private func presentMonumentInfoScreen(){
-        let monumentInfoViewController = MonumentInfoViewController()
+    private func presentMonumentInfoScreen(monument: Monument){
+        let monumentInfoViewController = MonumentInfoViewController(monument: monument)
         let nv = UINavigationController(rootViewController: monumentInfoViewController)
         self.present(nv, animated: true)
     }
