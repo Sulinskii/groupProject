@@ -28,6 +28,7 @@ class DefaultAppKeychain: AppKeychain {
 
     func save(token: String?) {
         guard let token = token else { return }
+        print(token)
         KeychainWrapper.standard.set(token, forKey: AppKeychainKey.token)
     }
 

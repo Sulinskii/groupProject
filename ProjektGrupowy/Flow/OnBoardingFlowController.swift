@@ -74,11 +74,8 @@ class OnBoardingFlowController {
         let loginViewController: LoginViewController = LoginViewController(viewModel: loginViewModel)
 
         rootNavigationController?.pushViewController(loginViewController, animated: true)
-        loginViewModel.action.subscribe(onNext: {
-            [unowned self] action in
-            switch action {
-            case .onLogin: self.onNext()
-            }
-        }).disposed(by: disposeBag)
+        loginViewModel.onUserLoggedIn = {
+            self.onNext()
+        }
     }
 }

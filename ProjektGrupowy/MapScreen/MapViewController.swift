@@ -18,6 +18,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     private var location = CLLocation()
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var manageButton: UIButton!
+    private var allMarkers: [PlaceMarker] = []
+    private var monuments: [Monument] = []
     private var nv: UINavigationController!
     private var manageNavigationController: UINavigationController!
     private var addButtonIsTapped: Bool = false
@@ -31,6 +33,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
 //        self.setNeedsStatusBarAppearanceUpdate()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogoutButton))
+        setupMonumentsObservables()
+        self.addMap(location: self.location)
         // Do any additional setup after loading the view.
     }
 
@@ -67,7 +71,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         location = locationManager.location!
-        addMap(location: location)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -87,6 +90,23 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         mapView.isMyLocationEnabled = true
         edgesForExtendedLayout = []
         view.addSubview(mapView)
+//        addButton.layer.zPosition = 1
+//        manageButton.layer.zPosition = 1
+//        view.layoutIfNeeded()
+    }
+
+    private func setupMonumentsObservables(){
+        self.viewModel.monumentsObservable.skip(1).subscribe(onNext: {
+            [unowned self] monument in
+            self.monuments = monument
+            for index in 0...self.monuments.count - 1 {
+                if(self.monuments[index].approved) {
+                    let marker = PlaceMarker(monument: self.monuments[index])
+                    self.allMarkers.append(marker)
+                    marker.map = self.mapView
+                }
+            }
+        }).disposed(by: disposeBag)
     }
 
     @objc func didTapAddButton() {
@@ -100,8 +120,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     public func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print(coordinate)
         if (addButtonIsTapped) {
-            addMonumentViewModel = AddMonumentViewModel(coordinates: coordinate)
-            addMonumentViewController = AddMonumentViewController(viewModel: addMonumentViewModel)
+            addMonumentViewModel = AddMonumentViewModel()
+            addMonumentViewController = AddMonumentViewController(viewModel: addMonumentViewModel, coordinates: coordinate)
             nv = UINavigationController(rootViewController: addMonumentViewController)
             self.present(nv, animated: true)
         }

@@ -13,7 +13,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupObservables()
         // Do any additional setup after loading the view.
     }
 
@@ -67,7 +67,10 @@ class LoginViewController: UIViewController {
         if (checkLogin()) {
             invalidLogin.isHidden = true
             if (checkPassword()) {
-//                viewModel.onUserLoggedIn(User(firstName: loginTextField.text))
+                print(loginTextField.text!)
+                print(passwordTextField.text!)
+                let user = LoginUser(login: self.loginTextField.text!, password: self.passwordTextField.text!)
+                self.viewModel.loginUser(user: user)
             } else {
                 invalidPassword.isHidden = false
             }
@@ -97,6 +100,22 @@ class LoginViewController: UIViewController {
         } else {
             return false
         }
+    }
+
+    private func setupObservables() {
+        self.viewModel.responseObservable.skip(1).subscribe(onNext: {
+            [weak self] error in
+            if(error){
+                self?.presentAlert(title: "Coś poszło nie tak", message: "Spróbuj jeszcze raz")
+            }
+        })
+    }
+
+    func presentAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(ok)
+        navigationController!.present(alert, animated: true)
     }
 
     /*

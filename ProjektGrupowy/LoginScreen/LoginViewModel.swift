@@ -9,23 +9,40 @@
 import Foundation
 import RxSwift
 
-enum LoginViewModelAction {
-    case onLogin(user: User)
-}
-
 class LoginViewModel {
-    let action: PublishSubject<LoginViewModelAction> = PublishSubject()
     private let userRepository: UserRepository
-
+    private let disposeBag = DisposeBag()
+    private var responseError: Variable<Bool> = Variable(false)
+    var responseObservable: Observable<Bool> {
+        return responseError.asObservable()
+    }
 
     init(userRepository: UserRepository = UserRepository.shared) {
         self.userRepository = userRepository
     }
 
-    func onUserLoggedIn(_ user: User) {
-        userRepository.save(user)
-        action.onNext(.onLogin(user: user))
+    func loginUser(user: LoginUser) {
+        API.login(user: user).execute().subscribe {
+            [unowned self](event: SingleEvent<User>) in
+            switch event {
+            case .success(let response):
+                print("everything ok")
+                print(response)
+                self.userRepository.save(response)
+                self.onUserLoggedIn()
+                print(response.token)
+                DefaultAppKeychain.shared.save(token: response.token)
+                self.responseError.value = false
+            case .error(_):
+                self.responseError.value = true
+                print("error")
+
+
+            }
+        }.disposed(by: self.disposeBag)
     }
+
+    var onUserLoggedIn: () -> () = { }
 
     
 }

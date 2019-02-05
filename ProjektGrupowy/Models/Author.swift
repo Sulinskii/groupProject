@@ -10,7 +10,6 @@ struct Author: Mappable {
     private(set) var id: Int = Int.max
     private(set) var login: String = ""
     private(set) var name: String = ""
-    private(set) var password: String = ""
     private(set) var surname: String = ""
 
     init?(map: Map) {
@@ -24,7 +23,6 @@ struct Author: Mappable {
         id <- map["id"]
         login <- map["login"]
         name <- map["name"]
-        password <- map["password"]
         surname <- map["surname"]
 
     }

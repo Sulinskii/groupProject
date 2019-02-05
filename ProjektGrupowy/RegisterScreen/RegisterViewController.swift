@@ -36,7 +36,7 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerButton.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside)
-
+        setupObservables()
         // Do any additional setup after loading the view.
     }
 
@@ -46,6 +46,21 @@ class RegisterViewController: UIViewController {
         self.viewModel.registerUser(user: user)
     }
 
+    func presentAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(ok)
+        navigationController!.present(alert, animated: true)
+    }
+
+    private func setupObservables() {
+        self.viewModel.responseObservable.skip(1).subscribe(onNext: {
+            [weak self] error in
+            if(error){
+                self?.presentAlert(title: "Coś poszło nie tak", message: "Spróbuj jeszcze raz")
+            }
+        })
+    }
 
     /*
     // MARK: - Navigation

@@ -30,11 +30,17 @@ enum API {
 
 extension API: TargetType {
     var baseURL: URL {
-        return URL(string: "http://52.157.230.165:7050")!
+        return URL(string: "http://52.236.144.147:7050")!
     }
     
     var headers: [String : String]? {
         var basicHeaders = ["Content-Type":"application/json"]
+        switch self {
+        case .addMonument:
+            basicHeaders.updateValue(DefaultAppKeychain.shared.readToken()!, forKey: "Authorization")
+        default: return basicHeaders
+        }
+        print(basicHeaders)
         return basicHeaders
     }
     
@@ -51,8 +57,8 @@ extension API: TargetType {
 
     var method: Moya.Method {
         switch self {
-        case .login, .getMonument, .getAllMonuments: return HTTPMethod.get
-        case .register, .addMonument: return HTTPMethod.post
+        case .getMonument, .getAllMonuments: return HTTPMethod.get
+        case .login, .register, .addMonument: return HTTPMethod.post
         case .updateMonument: return HTTPMethod.put
         }
     }
@@ -68,9 +74,11 @@ extension API: TargetType {
             return .requestParameters(parameters: data, encoding: JSONEncoding.default)
         case .login(let user):
             let data = Mapper<LoginUser>().toJSON(user)
+            print(data)
             return .requestParameters(parameters: data, encoding: JSONEncoding.default)
         case .addMonument(let monument):
-            let data = Mapper<AddMonument>().toJSON(user)
+            let data = Mapper<AddMonument>().toJSON(monument)
+            print(data)
             return .requestParameters(parameters: data, encoding: JSONEncoding.default)
         case .getMonument, .updateMonument, .getAllMonuments: return .requestPlain
         default: return .requestPlain

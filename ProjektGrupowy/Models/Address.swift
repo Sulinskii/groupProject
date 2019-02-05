@@ -8,11 +8,11 @@ import ObjectMapper
 
 struct Address: Mappable {
     private(set) var city: String = ""
+    private(set) var street: String = ""
     private(set) var country: String = ""
     private(set) var flatNumber: String = ""
     private(set) var houseNumber: String = ""
     private(set) var postCode: String = ""
-    private(set) var street: String = ""
 
     init?(map: Map) {
 
@@ -28,11 +28,11 @@ struct Address: Mappable {
     }
 
     mutating func mapping(map: Map) {
+        street <- map["street"]
+        houseNumber <- map["houseNumber"]
+        flatNumber <- map["flatNumber"]
+        postCode <- map["postCode"]
         city <- map["city"]
         country <- map["country"]
-        flatNumber <- map["flatNumber"]
-        houseNumber <- map["houseNumber"]
-        postCode <- map["postCode"]
-        street <- map["street"]
     }
 }

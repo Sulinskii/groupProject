@@ -50,6 +50,7 @@ private extension PrimitiveSequence where TraitType == SingleTrait, ElementType 
                     return Single.create {
                         observer in
                         let statusCode: Int = response.statusCode
+                        print(statusCode)
                         if ((statusCode >= 200 && statusCode < 300) || statusCode == 422)  {
                             observer(.success(response))
                         } else {

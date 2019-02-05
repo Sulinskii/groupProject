@@ -9,8 +9,10 @@ import ObjectMapper
 struct AddMonument: Mappable {
     private(set) var name: String = ""
     private(set) var function: String = ""
-    private(set) var creationDone: String = ""
+    private(set) var creationDate: String = ""
     private(set) var archivalSource: String = ""
+//    private(set) var type: String = ""
+//    private(set) var status: String = ""
     private(set) var coordinates: Coordinate = Coordinate()
     private(set) var address: Address = Address()
 
@@ -18,10 +20,11 @@ struct AddMonument: Mappable {
 
     }
 
-    init(name: String, function: String, creationDone: String, archivalSource: String, coordinates: Coordinate, address: Address){
+    init(name: String = "", function: String = "",  creationDone: String = "", archivalSource: String = "",
+         coordinates: Coordinate = Coordinate(), address: Address = Address()){
         self.name = name
         self.function = function
-        self.creationDone = creationDone
+        self.creationDate = creationDone
         self.archivalSource = archivalSource
         self.coordinates = coordinates
         self.address = address
@@ -30,8 +33,10 @@ struct AddMonument: Mappable {
     mutating func mapping(map: Map) {
         name <- map["name"]
         function <- map["function"]
-        creationDone <- map["creationDone"]
+        creationDate <- map["creationDate"]
         archivalSource <- map["archivalSource"]
+//        type <- map["type"]
+//        status <- map["status"]
         coordinates <- map["coordinates"]
         address <- map["address"]
     }

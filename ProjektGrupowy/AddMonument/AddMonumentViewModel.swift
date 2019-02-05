@@ -8,27 +8,25 @@ import CoreLocation
 import RxSwift
 
 class AddMonumentViewModel {
-    private var coordinates: CLLocationCoordinate2D
+    private var coordinates: CLLocationCoordinate2D!
     private var address: Address!
     private var name: String!
     private var function: String!
     private var creationDone: String!
     private var archivalSource: String!
-    private var monument: Monument!
     private let disposeBag = DisposeBag()
-    private var response: Variable<Bool> = Variable(false)
-    var responseObservable: Observable<Bool> = {
-        return response.asObservable()
+    private var responseError: Variable<Bool> = Variable(false)
+    var responseObservable: Observable<Bool> {
+        return responseError.asObservable()
     }
 
-    init(coordinates: CLLocationCoordinate2D){
-        self.coordinates = coordinates
+    init(){
     }
 
-    private func createMonument(){
-        let newCoordinates = Coordinate(latitude: coordinates.latitude, longitude: coordinates.longitude)
-        monument = AddMonument(name: name, function: function, creationDone: creationDone, archivalSource: archivalSource, coordinates: newCoordinates, address: address)
-    }
+//    private func createMonument(){
+//        let newCoordinates = Coordinate(latitude: coordinates.latitude, longitude: coordinates.longitude)
+//        monument = AddMonument(name: name, function: function, creationDone: creationDone, archivalSource: archivalSource, coordinates: newCoordinates, address: address)
+//    }
 
     func setAddress(address: Address){
         self.address = address
@@ -51,13 +49,16 @@ class AddMonumentViewModel {
     }
 
     func addMonument(monument: AddMonument) {
+        print(monument.address)
+        print(monument.name)
         API.addMonument(monument: monument).execute().subscribe {
-            [unowned self](event: SingleEvent<User>) in
+            [unowned self](event: SingleEvent<Monument>) in
             switch event {
             case .success(let response):
-                self.response.value = true
+                self.responseError.value = false
+
             case .error(_):
-                self.response.value = false
+                self.responseError.value = true
 
 
             }

@@ -70,12 +70,17 @@ class NotLoggedMapViewController: UIViewController, GMSMapViewDelegate, CLLocati
         bounds = bounds.includingCoordinate(startLocation)
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
-        self.allMarkers = monuments.map {
-            let marker = PlaceMarker(monument: $0)
-            marker.map = self.mapView
-            print(marker)
-            return marker
+        for index in 0...monuments.count - 1 {
+            if(monuments[index].approved) {
+                let marker = PlaceMarker(monument: monuments[index])
+                allMarkers.append(marker)
+                marker.map = self.mapView
+            }
         }
+//        self.allMarkers = monuments.map {
+//            print(marker)
+//            return marker
+//        }
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
         view.addSubview(mapView)
