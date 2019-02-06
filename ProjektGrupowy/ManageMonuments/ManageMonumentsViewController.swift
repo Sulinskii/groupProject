@@ -28,7 +28,7 @@ class ManageMonumentsViewController: UIViewController, UITableViewDelegate, UITa
         self.navigationController?.navigationBar.barTintColor = .black
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(didTapCloseButton))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Zamknij", style: .plain, target: self, action: #selector(didTapCloseButton))
         if(monuments.count == 0){
             tableView.isHidden = true
         } else {

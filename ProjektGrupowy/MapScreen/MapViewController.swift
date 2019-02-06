@@ -23,18 +23,28 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     private var nv: UINavigationController!
     private var manageNavigationController: UINavigationController!
     private var addButtonIsTapped: Bool = false
+    private var manageButtonIsTapped: Bool = false
     private var addMonumentViewController: AddMonumentViewController!
     private var addMonumentViewModel: AddMonumentViewModel!
-    private var manageMonumentsViewController: ManageMonumentsViewController!
-
+    private var manageMonumentsViewController: AddMonumentViewController!
+    private var manageMonumentsViewModel: AddMonumentViewModel!
+    @IBOutlet weak var addButtonWidth: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNeedsStatusBarAppearanceUpdate()
+        print("view did load")
         UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
 //        self.setNeedsStatusBarAppearanceUpdate()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogoutButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Wyloguj", style: .plain, target: self, action: #selector(didTapLogoutButton))
         setupMonumentsObservables()
         self.addMap(location: self.location)
+        if(!(UserRepository.shared.readUser()?.superUser)!){
+            addButtonWidth.constant = self.view.frame.width/2
+            manageButton.isHidden = true
+        }
+        addButton.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
+        manageButton.addTarget(self, action: #selector(didTapManageButton), for: .touchUpInside)
         // Do any additional setup after loading the view.
     }
 
@@ -49,18 +59,24 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        print("view will appear")
+        viewModel.loadMonuments()
+        print("IS MANAGE BUTTON TAPPED: \(self.manageButtonIsTapped) first")
 //        self.navigationController?.navigationBar.backgroundColor = .red
 //        navigationController?.navigationBar.backgroundColor = .red
         self.navigationController?.navigationBar.barTintColor = .black
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        addButton.backgroundColor = .white
+        addButton.isEnabled = true
+        addButton.alpha = 1
+        if((UserRepository.shared.readUser()?.superUser)!) {
+            manageButton.backgroundColor = .white
+            manageButton.isEnabled = true
+            manageButton.alpha = 1
+        }
         title = "Projekt grupowy"
-        addButton.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
-        manageButton.addTarget(self, action: #selector(didTapManageButton), for: .touchUpInside)
-        let monuments: [Monument] = []
-        manageMonumentsViewController = ManageMonumentsViewController(monuments: monuments)
-        manageNavigationController = UINavigationController(rootViewController: manageMonumentsViewController)
+        
     }
 
     init(viewModel: MapViewModel) {
@@ -99,34 +115,148 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         self.viewModel.monumentsObservable.skip(1).subscribe(onNext: {
             [unowned self] monument in
             self.monuments = monument
-            for index in 0...self.monuments.count - 1 {
-                if(self.monuments[index].approved) {
-                    let marker = PlaceMarker(monument: self.monuments[index])
-                    self.allMarkers.append(marker)
-                    marker.map = self.mapView
+            self.mapView.clear()
+            print("IS MANAGE BUTTON TAPPED: \(self.manageButtonIsTapped) second")
+            if(!self.manageButtonIsTapped) {
+                for index in 0...self.monuments.count - 1 {
+                    if (self.monuments[index].approved) {
+                        let marker = PlaceMarker(monument: self.monuments[index])
+                        self.allMarkers.append(marker)
+                        marker.map = self.mapView
+                    }
+                }
+            } else {
+                for index in 0...self.monuments.count - 1 {
+                    if (!self.monuments[index].approved) {
+                        let marker = PlaceMarker(monument: self.monuments[index])
+                        self.allMarkers.append(marker)
+                        marker.map = self.mapView
+                    }
                 }
             }
         }).disposed(by: disposeBag)
     }
 
     @objc func didTapAddButton() {
-        addButtonIsTapped = true
+        if((UserRepository.shared.readUser()?.superUser)!) {
+            if (!addButtonIsTapped) {
+                addButtonIsTapped = true
+                manageButtonIsTapped = false
+                manageButton.isEnabled = false
+                UIView.animate(withDuration: 0.5){
+                    self.addButton.backgroundColor = .red
+                    self.manageButton.alpha = 0.3
+                }
+                for index in 0...self.monuments.count - 1 {
+                    if (self.monuments[index].approved) {
+                        let marker = PlaceMarker(monument: self.monuments[index])
+                        self.allMarkers.append(marker)
+                        marker.icon = GMSMarker.markerImage(with: UIColor.red)
+                        marker.map = self.mapView
+                    }
+                }
+
+            } else {
+                addButtonIsTapped = false
+                manageButton.isEnabled = true
+                UIView.animate(withDuration: 0.5){
+                    self.addButton.backgroundColor = .white
+                    self.manageButton.alpha = 1
+                }
+            }
+        } else {
+            if (!addButtonIsTapped) {
+                addButtonIsTapped = true
+                UIView.animate(withDuration: 0.5){
+                    self.addButton.backgroundColor = .red
+                }
+            } else {
+                addButtonIsTapped = false
+                UIView.animate(withDuration: 0.5){
+                    self.addButton.backgroundColor = .white
+                }
+            }
+        }
+
     }
 
     @objc func didTapManageButton() {
-        self.present(manageNavigationController, animated: true)
+        mapView.clear()
+//        monuments.removeAll()
+        if(!manageButtonIsTapped) {
+            manageButtonIsTapped = true
+            addButtonIsTapped = false
+            addButton.isEnabled = false
+            print("IS MANAGE BUTTON TAPPED: \(self.manageButtonIsTapped) third")
+            UIView.animate(withDuration: 0.5){
+                self.manageButton.backgroundColor = .red
+                self.addButton.alpha = 0.3
+            }
+            for index in 0...self.monuments.count - 1 {
+                if (!self.monuments[index].approved) {
+                    let marker = PlaceMarker(monument: self.monuments[index])
+                    self.allMarkers.append(marker)
+                    marker.icon = GMSMarker.markerImage(with: UIColor.orange)
+                    marker.map = self.mapView
+                }
+            }
+        } else {
+            manageButtonIsTapped = false
+            addButton.isEnabled = true
+            print("IS MANAGE BUTTON TAPPED: \(self.manageButtonIsTapped) fourth")
+            UIView.animate(withDuration: 0.5){
+                self.manageButton.backgroundColor = .white
+                self.addButton.alpha = 1
+            }
+            for index in 0...self.monuments.count - 1 {
+                if (self.monuments[index].approved) {
+                    let marker = PlaceMarker(monument: self.monuments[index])
+                    self.allMarkers.append(marker)
+                    marker.icon = GMSMarker.markerImage(with: UIColor.red)
+                    marker.map = self.mapView
+                }
+            }
+        }
+//        self.present(manageNavigationController, animated: true)
     }
 
     public func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print(coordinate)
-        if (addButtonIsTapped) {
+        if (addButtonIsTapped && !manageButtonIsTapped) {
             addMonumentViewModel = AddMonumentViewModel()
-            addMonumentViewController = AddMonumentViewController(viewModel: addMonumentViewModel, coordinates: coordinate)
+            addMonumentViewController = AddMonumentViewController(viewModel: addMonumentViewModel, coordinates: coordinate, manage: 1)
             nv = UINavigationController(rootViewController: addMonumentViewController)
             self.present(nv, animated: true)
+            addButtonIsTapped = false
         }
     }
 
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        guard let marker = marker as? PlaceMarker else {
+            return true
+        }
+        if(manageButtonIsTapped) {
+            presentManageMonumentScreen(monument: marker.monument)
+        } else if(!manageButtonIsTapped && !addButtonIsTapped){
+            presentMonumentInfoScreen(monument: marker.monument)
+        }
+        return true
+    }
+
+    private func presentManageMonumentScreen(monument: Monument){
+        manageMonumentsViewModel = AddMonumentViewModel(monument: monument)
+        manageMonumentsViewController = AddMonumentViewController(viewModel: manageMonumentsViewModel, manage: 0)
+        manageNavigationController = UINavigationController(rootViewController: manageMonumentsViewController)
+        self.present(manageNavigationController, animated: true)
+        manageButtonIsTapped = false
+    }
+
+    private func presentMonumentInfoScreen(monument: Monument){
+        let monumentInfoViewModel = AddMonumentViewModel(monument: monument)
+        let monumentInfoViewController = AddMonumentViewController(viewModel: monumentInfoViewModel, manage: 2)
+        let nv = UINavigationController(rootViewController: monumentInfoViewController)
+        self.present(nv, animated: true)
+    }
 
     /*
     // MARK: - Navigation

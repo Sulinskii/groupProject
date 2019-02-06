@@ -33,6 +33,7 @@
 		68B3888821B5BD3B000406F2 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B3888621B5BD3B000406F2 /* MapViewController.xib */; };
 		68B3888A21B5BD4E000406F2 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B3888921B5BD4E000406F2 /* MapViewModel.swift */; };
 		861330690A26588F0CAB7100 /* PlaceMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86133C4BB9E5CA2BAA4DD29A /* PlaceMarker.swift */; };
+		86133184FF942BD6B7E9868F /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861339FF0B0FF74B260F95CA /* Session.swift */; };
 		8613330CA32896447BC3AE3B /* MainFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86133D5DA290F27CC0A983B7 /* MainFlowController.swift */; };
 		86133336D91C7D66A6FB8B69 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861334BEDD364DF25E6217B0 /* RegisterViewModel.swift */; };
 		861333A6D86589D36F242A88 /* NotLoggedMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613325F8530A6126DB4EB7D /* NotLoggedMapViewModel.swift */; };
@@ -131,6 +132,7 @@
 		8613383D9D498A81BB08AD13 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		86133880927DE3BAE6074DDF /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		8613397F3F501F7D4D0B9DAD /* AddMonument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMonument.swift; sourceTree = "<group>"; };
+		861339FF0B0FF74B260F95CA /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		86133A14DA2EB773E3AE67DE /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		86133A504330BA5DF8FE21C0 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		86133A87C107DBC62D2AA73B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 			children = (
 				86133BF252A1F4B87B649F7A /* UserRepository.swift */,
 				8613331D2854E69ED4A0DBA4 /* AppKeychain.swift */,
+				861339FF0B0FF74B260F95CA /* Session.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -712,6 +715,7 @@
 				86133955029D63CCC6E274F7 /* LoginUser.swift in Sources */,
 				8613384D16A5850A09A60474 /* PostAddress.swift in Sources */,
 				86133C32E3139F7C48DE0DF0 /* AddMonument.swift in Sources */,
+				86133184FF942BD6B7E9868F /* Session.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

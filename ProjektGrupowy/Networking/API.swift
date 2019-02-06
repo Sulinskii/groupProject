@@ -17,7 +17,7 @@ enum API {
     case getMonument(id: Int)
     case addMonument(monument: AddMonument)
     case getAllMonuments
-    case updateMonument
+    case updateMonument(id: Int)
 
     func execute<T: Mappable>() -> Single<T> {
         return networkPerformer.performRequest(on: self).observeOn(MainScheduler.instance)
@@ -30,13 +30,13 @@ enum API {
 
 extension API: TargetType {
     var baseURL: URL {
-        return URL(string: "http://52.236.144.147:7050")!
+        return URL(string: "http://52.157.228.97:7050")!
     }
     
     var headers: [String : String]? {
         var basicHeaders = ["Content-Type":"application/json"]
         switch self {
-        case .addMonument:
+        case .addMonument, .updateMonument:
             basicHeaders.updateValue(DefaultAppKeychain.shared.readToken()!, forKey: "Authorization")
         default: return basicHeaders
         }
@@ -51,7 +51,7 @@ extension API: TargetType {
         case .getMonument(let id): return "/monuments/\(id)"
         case .addMonument: return "monuments/add"
         case .getAllMonuments: return "monuments/all"
-        case .updateMonument: return "monuments/update"
+        case .updateMonument(let id): return "monuments/approve/\(id)/monument"
         }
     }
 

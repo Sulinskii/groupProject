@@ -12,10 +12,12 @@ struct Monument: Mappable {
     private(set) var archivalSource: String = ""
     private(set) var author: Author = Author()
     private(set) var coordinates: Coordinate = Coordinate()
-    private(set) var creationDone: String = ""
+    private(set) var creationDate: String = ""
     private(set) var function: String = ""
     private(set) var id: Int = Int.max
     private(set) var name: String = ""
+    private(set) var status: String = ""
+    private(set) var type: String = ""
 
     init?(map: Map) {
 
@@ -30,10 +32,12 @@ struct Monument: Mappable {
         archivalSource <- map["archivalSource"]
         author <- map["author"]
         coordinates <- map["coordinates"]
-        creationDone <- map["creationDone"]
+        creationDate <- map["creationDate"]
         function <- map["function"]
         id <- map["id"]
         name <- map["name"]
+        status <- map["status"]
+        type <- map["type"]
     }
 
 }

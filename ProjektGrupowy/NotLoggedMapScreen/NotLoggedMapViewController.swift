@@ -26,7 +26,6 @@ class NotLoggedMapViewController: UIViewController, GMSMapViewDelegate, CLLocati
         super.init(nibName: "NotLoggedMapViewController", bundle: Bundle.main)
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
-        location = locationManager.location!
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -35,6 +34,7 @@ class NotLoggedMapViewController: UIViewController, GMSMapViewDelegate, CLLocati
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        location = locationManager.location!
         let rightBarImage = UIImageView(imageIdentifier: .loginHead)
         self.setNeedsStatusBarAppearanceUpdate()
         UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
@@ -108,7 +108,8 @@ class NotLoggedMapViewController: UIViewController, GMSMapViewDelegate, CLLocati
     }
 
     private func presentMonumentInfoScreen(monument: Monument){
-        let monumentInfoViewController = MonumentInfoViewController(monument: monument)
+        let monumentInfoViewModel = AddMonumentViewModel(monument: monument)
+        let monumentInfoViewController = AddMonumentViewController(viewModel: monumentInfoViewModel, manage: 2)
         let nv = UINavigationController(rootViewController: monumentInfoViewController)
         self.present(nv, animated: true)
     }

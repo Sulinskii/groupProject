@@ -11,8 +11,8 @@ struct AddMonument: Mappable {
     private(set) var function: String = ""
     private(set) var creationDate: String = ""
     private(set) var archivalSource: String = ""
-//    private(set) var type: String = ""
-//    private(set) var status: String = ""
+    private(set) var type: String = ""
+    private(set) var status: String = ""
     private(set) var coordinates: Coordinate = Coordinate()
     private(set) var address: Address = Address()
 
@@ -21,13 +21,15 @@ struct AddMonument: Mappable {
     }
 
     init(name: String = "", function: String = "",  creationDone: String = "", archivalSource: String = "",
-         coordinates: Coordinate = Coordinate(), address: Address = Address()){
+         coordinates: Coordinate = Coordinate(), address: Address = Address(), status: String = "", type: String = ""){
         self.name = name
         self.function = function
         self.creationDate = creationDone
         self.archivalSource = archivalSource
         self.coordinates = coordinates
         self.address = address
+        self.status = status
+        self.type = type
     }
 
     mutating func mapping(map: Map) {
@@ -35,8 +37,8 @@ struct AddMonument: Mappable {
         function <- map["function"]
         creationDate <- map["creationDate"]
         archivalSource <- map["archivalSource"]
-//        type <- map["type"]
-//        status <- map["status"]
+        type <- map["type"]
+        status <- map["status"]
         coordinates <- map["coordinates"]
         address <- map["address"]
     }

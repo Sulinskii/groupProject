@@ -85,7 +85,7 @@ class LoginViewController: UIViewController {
     }
 
     func checkLogin() -> Bool {
-        if ((loginTextField.text?.count)! > 3) {
+        if ((loginTextField.text?.count)! > 1) {
             return true
         } else {
             return false
@@ -95,7 +95,7 @@ class LoginViewController: UIViewController {
     }
 
     func checkPassword() -> Bool {
-        if ((passwordTextField.text?.count)! > 3) {
+        if ((passwordTextField.text?.count)! > 1) {
             return true
         } else {
             return false

@@ -28,7 +28,7 @@
                         <constraint firstAttribute="height" constant="40" id="kUw-f0-DY5"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                    <state key="normal" title="Sign in">
+                    <state key="normal" title="Zaloguj">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
@@ -39,7 +39,7 @@
                         <constraint firstAttribute="height" constant="40" id="YME-dt-vdm"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                    <state key="normal" title="Register">
+                    <state key="normal" title="Zarejestruj">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>

@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="ProjektGrupowy" customModuleProvider="target">
             <connections>
                 <outlet property="addButton" destination="iqU-Ef-cfo" id="5B9-EL-RQc"/>
+                <outlet property="addButtonWidth" destination="KGj-rf-jhn" id="dZU-VG-d3C"/>
                 <outlet property="manageButton" destination="ELI-24-TtN" id="rod-DM-Hyk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -26,7 +27,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="wEt-t1-Gjk"/>
                     </constraints>
-                    <state key="normal" title="Add">
+                    <state key="normal" title="Dodaj">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -46,7 +47,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="XXa-6R-RAO"/>
                     </constraints>
-                    <state key="normal" title="Manage">
+                    <state key="normal" title="Zarządzaj">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>

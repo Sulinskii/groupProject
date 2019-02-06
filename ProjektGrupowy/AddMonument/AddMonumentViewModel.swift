@@ -12,6 +12,7 @@ class AddMonumentViewModel {
     private var address: Address!
     private var name: String!
     private var function: String!
+    private var monument: Monument!
     private var creationDone: String!
     private var archivalSource: String!
     private let disposeBag = DisposeBag()
@@ -20,7 +21,13 @@ class AddMonumentViewModel {
         return responseError.asObservable()
     }
 
-    init(){
+    private var responseManageError: Variable<Bool> = Variable(false)
+    var responseManageObservable: Observable<Bool> {
+        return responseManageError.asObservable()
+    }
+
+    init(monument: Monument = Monument()){
+        self.monument = monument
     }
 
 //    private func createMonument(){
@@ -28,24 +35,8 @@ class AddMonumentViewModel {
 //        monument = AddMonument(name: name, function: function, creationDone: creationDone, archivalSource: archivalSource, coordinates: newCoordinates, address: address)
 //    }
 
-    func setAddress(address: Address){
-        self.address = address
-    }
-
-    func setName(name: String){
-        self.name = name
-    }
-
-    func setFunction(function: String){
-        self.function = function
-    }
-
-    func setCreationDone(creationDone: String){
-        self.creationDone = creationDone
-    }
-
-    func setArchivalSource(archivalSource: String){
-        self.archivalSource = archivalSource
+    func getMonument() -> Monument{
+        return monument
     }
 
     func addMonument(monument: AddMonument) {
@@ -59,8 +50,18 @@ class AddMonumentViewModel {
 
             case .error(_):
                 self.responseError.value = true
+            }
+        }.disposed(by: self.disposeBag)
+    }
 
-
+    func setMonumentActive(id: Int) {
+        API.updateMonument(id: id).execute().subscribe {
+            [unowned self](event: SingleEvent<Monument>) in
+            switch event {
+            case .success(let response):
+                self.responseManageError.value = false
+            case .error(_):
+                self.responseManageError.value = true
             }
         }.disposed(by: self.disposeBag)
     }

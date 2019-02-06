@@ -19,7 +19,6 @@ class MapViewModel {
 
     init(userRepository: UserRepository = UserRepository.shared) {
         self.userRepository = userRepository
-        loadMonuments()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -32,7 +31,7 @@ class MapViewModel {
             switch event {
             case .success(let response):
                 self.monuments.value = response
-                print(self.monuments.value)
+//                print(self.monuments.value)
             case .error(_):
                 print("error")
                 break
